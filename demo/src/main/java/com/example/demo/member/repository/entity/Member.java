@@ -20,7 +20,7 @@ import lombok.*;
 @Getter //생성된 객체의 데이터를 외부에서 읽을 수 있도록 허용합니다.
 public class Member {
 
-    @Id
+    @Id // 기본키라고 알려주는 것
     //auto_increment // DB에 그 순서대로 번호 매겨주는거 ex)idx에
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long index;

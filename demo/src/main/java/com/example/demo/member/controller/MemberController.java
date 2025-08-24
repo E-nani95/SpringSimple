@@ -2,6 +2,7 @@ package com.example.demo.member.controller;
 
 
 import com.example.demo.member.controller.dto.JoinRequest;
+import com.example.demo.member.controller.dto.JoinResponse;
 import com.example.demo.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class MemberController {
 
     //Post는 자원을 보내주는 역할
     @PostMapping("/join")
-    public String join(@RequestBody JoinRequest joinRequest){
+    public JoinResponse join(@RequestBody JoinRequest joinRequest){
 //        String id = joinRequest.getId();
 //        String name = joinRequest.getName();
 //        String phoneNumber = joinRequest.getPhoneNumber();
@@ -42,10 +43,10 @@ public class MemberController {
         String result = memberService.join(joinRequest);
 
         if("success".equalsIgnoreCase(result)){
-            return "success";
+            return new JoinResponse(200,"success", joinRequest.getId());
 
         }else{
-            return  "fail";
+            return  new JoinResponse(400,"fail", null);
         }
 
         // entity -> 어떤값들을 받을것인가(저장할것인가)
